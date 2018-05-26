@@ -100,6 +100,11 @@
         }
       });
     });
+
+    var numOfOrder = 0;
+    function cartOrder(){
+      alert("You have "+numOfOrder+" orders");
+    }
   </script>
 </head>
 
@@ -134,10 +139,14 @@
             <a href="register.html">
               <span class="glyphicon glyphicon-user"></span> LOGIN/REGISTER</a>
           </li>
-          <li>
-            <a href="#">
-              <span class="glyphicon glyphicon-shopping-cart"></span> CART</a>
-          </li>
+          <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                  <span class="glyphicon glyphicon-shopping-cart"></span> CART <span id="numItems">(0)</span>
+              <ul class="dropdown-menu">
+                <li><a href="#" onclick="cartOrder()">Check Items</a> </li>
+                <li><a href="#" onclick="resetOrder()">Reset Order</a></li>
+              </ul>
+            </li>
         </ul>
       </div>
     </div>

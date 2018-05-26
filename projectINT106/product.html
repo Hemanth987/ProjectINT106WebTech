@@ -102,8 +102,24 @@
       });
     });
 
-    function changepic(num){
-      document.getElementById("p"+num).src="img/product"+num+"-2.jpg";
+    function changepicIn(pnum) {
+      document.getElementById("p" + pnum).src = "img/product" + pnum + "-2.jpg";
+    }
+    function changepicOut(pnum) {
+      document.getElementById("p" + pnum).src = "img/product" + pnum + "-1.jpg";
+    }
+
+    var numOfOrder = 0;
+    function cartOrder() {
+      alert("You have " + numOfOrder + " orders");
+    }
+    function addToCart() {
+      numOfOrder++;
+      document.getElementById("numItems").innerHTML = "(" + numOfOrder + ")";
+    }
+    function resetOrder(){
+      numOfOrder = 0;
+      document.getElementById("numItems").innerHTML = "(" + numOfOrder + ")";
     }
   </script>
 </head>
@@ -139,10 +155,16 @@
             <a href="register.html">
               <span class="glyphicon glyphicon-user"></span> LOGIN/REGISTER</a>
           </li>
-          <li>
-            <a href="#">
-              <span class="glyphicon glyphicon-shopping-cart"></span> CART</a>
-          </li>
+
+          <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                  <span class="glyphicon glyphicon-shopping-cart"></span> CART <span id="numItems">(0)</span>
+              <ul class="dropdown-menu">
+                <li><a href="#" onclick="cartOrder()">Check Items</a> </li>
+                <li><a href="#" onclick="resetOrder()">Reset Order</a></li>
+              </ul>
+            </li>
+            
         </ul>
       </div>
     </div>
@@ -154,23 +176,23 @@
 
     <div class="row">
 
-        <div class="col-md-3">
-            <p class="lead">Shop Name</p>
-            <div class="list-group">
-              <a href="#" class="list-group-item">Category 1</a>
-              <a href="#" class="list-group-item">Category 2</a>
-              <a href="#" class="list-group-item">Category 3</a>
-            </div>
-          </div>
+      <div class="col-md-3">
+        <p class="lead">Shop Name</p>
+        <div class="list-group">
+          <a href="#" class="list-group-item">Category 1</a>
+          <a href="#" class="list-group-item">Category 2</a>
+          <a href="#" class="list-group-item">Category 3</a>
+        </div>
+      </div>
 
       <div class="col-md-9">
 
         <div class="row">
-
+          <!--   Open Items 1  *************** -->
           <div class="col-sm-4 col-lg-4 col-md-4">
             <div class="thumbnail">
-              <div onmouseover='document.getElementById("p"+num).src="http://placehold.it/320x150";'>
-                  <img id="p001" src="img/product001-1.jpg" alt="">
+              <div onmouseover='changepicIn("001")' onmouseout='changepicOut("001")'>
+                <img id="p001" src="img/product001-1.jpg" alt="NIKE Run Swift">
               </div>
               <div class="caption">
                 <h4 class="pull-right">$24.99</h4>
@@ -181,7 +203,7 @@
                   <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
               </div>
               <div class="ratings">
-                <p class="pull-right">15 reviews</p>
+                <button class="pull-right" onclick="addToCart()">Add to Cart</button>
                 <p>
                   <span class="glyphicon glyphicon-star"></span>
                   <span class="glyphicon glyphicon-star"></span>
@@ -192,10 +214,13 @@
               </div>
             </div>
           </div>
-
+          <!--Closed Items-->
+          <!--   Open Items 2  *************** -->
           <div class="col-sm-4 col-lg-4 col-md-4">
             <div class="thumbnail">
-              <img src="img/product001-2.jpg" alt="">
+              <div onmouseover='changepicIn("002")' onmouseout='changepicOut("002")'>
+                <img id="p002" src="img/product002-1.jpg" alt="NIKE Epic React Flyknit">
+              </div>
               <div class="caption">
                 <h4 class="pull-right">$64.99</h4>
                 <h4>
@@ -204,7 +229,7 @@
                 <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
               </div>
               <div class="ratings">
-                <button class="pull-right">Add to Cart</button>
+                <button class="pull-right" onclick="addToCart()">Add to Cart</button>
                 <p>
                   <span class="glyphicon glyphicon-star"></span>
                   <span class="glyphicon glyphicon-star"></span>
@@ -213,78 +238,282 @@
                   <span class="glyphicon glyphicon-star-empty"></span>
                 </p>
               </div>
-              
+
             </div>
           </div>
-
+          <!--Closed Items-->
+          <!--  Open Items 3 *************** -->
           <div class="col-sm-4 col-lg-4 col-md-4">
             <div class="thumbnail">
-              <img src="http://placehold.it/320x150" alt="">
+              <div onmouseover='changepicIn("003")' onmouseout='changepicOut("003")'>
+                <img id="p003" src="img/product003-1.jpg" alt="NIKE Run Swift">
+              </div>
               <div class="caption">
-                <h4 class="pull-right">$74.99</h4>
+                <h4 class="pull-right">$24.99</h4>
                 <h4>
-                  <a href="#">Third Product</a>
+                  <a href="#">First Product</a>
                 </h4>
-                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <p>See more snippets like this online store item at
+                  <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
               </div>
               <div class="ratings">
-                <p class="pull-right">31 reviews</p>
+                <button class="pull-right" onclick="addToCart()">Add to Cart</button>
                 <p>
                   <span class="glyphicon glyphicon-star"></span>
                   <span class="glyphicon glyphicon-star"></span>
                   <span class="glyphicon glyphicon-star"></span>
                   <span class="glyphicon glyphicon-star"></span>
-                  <span class="glyphicon glyphicon-star-empty"></span>
+                  <span class="glyphicon glyphicon-star"></span>
                 </p>
               </div>
             </div>
           </div>
+          <!--Closed Items-->
 
+          <!-- Open Items 4  *************** -->
           <div class="col-sm-4 col-lg-4 col-md-4">
             <div class="thumbnail">
-              <img src="http://placehold.it/320x150" alt="">
+              <div onmouseover='changepicIn("004")' onmouseout='changepicOut("004")'>
+                <img id="p004" src="img/product004-1.jpg" alt="NIKE Run Swift">
+              </div>
               <div class="caption">
-                <h4 class="pull-right">$84.99</h4>
+                <h4 class="pull-right">$24.99</h4>
                 <h4>
-                  <a href="#">Fourth Product</a>
+                  <a href="#">First Product</a>
                 </h4>
-                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <p>See more snippets like this online store item at
+                  <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
               </div>
               <div class="ratings">
-                <p class="pull-right">6 reviews</p>
+                <button class="pull-right" onclick="addToCart()">Add to Cart</button>
                 <p>
                   <span class="glyphicon glyphicon-star"></span>
                   <span class="glyphicon glyphicon-star"></span>
                   <span class="glyphicon glyphicon-star"></span>
-                  <span class="glyphicon glyphicon-star-empty"></span>
-                  <span class="glyphicon glyphicon-star-empty"></span>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"></span>
                 </p>
               </div>
             </div>
           </div>
+          <!--Closed Items-->
 
+          <!-- Open Items 5  *************** -->
           <div class="col-sm-4 col-lg-4 col-md-4">
             <div class="thumbnail">
-              <img src="http://placehold.it/320x150" alt="">
+              <div onmouseover='changepicIn("005")' onmouseout='changepicOut("005")'>
+                <img id="p005" src="img/product005-1.jpg" alt="NIKE Run Swift">
+              </div>
               <div class="caption">
-                <h4 class="pull-right">$94.99</h4>
+                <h4 class="pull-right">$24.99</h4>
                 <h4>
-                  <a href="#">Fifth Product</a>
+                  <a href="#">First Product</a>
                 </h4>
-                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <p>See more snippets like this online store item at
+                  <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
               </div>
               <div class="ratings">
-                <p class="pull-right">18 reviews</p>
+                <button class="pull-right" onclick="addToCart()">Add to Cart</button>
                 <p>
                   <span class="glyphicon glyphicon-star"></span>
                   <span class="glyphicon glyphicon-star"></span>
                   <span class="glyphicon glyphicon-star"></span>
                   <span class="glyphicon glyphicon-star"></span>
-                  <span class="glyphicon glyphicon-star-empty"></span>
+                  <span class="glyphicon glyphicon-star"></span>
                 </p>
               </div>
             </div>
           </div>
+          <!--Closed Items-->
+          <!-- Open Items 6  *************** -->
+          <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+              <div onmouseover='changepicIn("006")' onmouseout='changepicOut("006")'>
+                <img id="p006" src="img/product006-1.jpg" alt="NIKE Run Swift">
+              </div>
+              <div class="caption">
+                <h4 class="pull-right">$24.99</h4>
+                <h4>
+                  <a href="#">First Product</a>
+                </h4>
+                <p>See more snippets like this online store item at
+                  <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
+              </div>
+              <div class="ratings">
+                <button class="pull-right" onclick="addToCart()">Add to Cart</button>
+                <p>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"></span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <!--Closed Items-->
+          <!-- Open Items 7  *************** -->
+          <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+              <div onmouseover='changepicIn("007")' onmouseout='changepicOut("007")'>
+                <img id="p007" src="img/product007-1.jpg" alt="NIKE Run Swift">
+              </div>
+              <div class="caption">
+                <h4 class="pull-right">$24.99</h4>
+                <h4>
+                  <a href="#">First Product</a>
+                </h4>
+                <p>See more snippets like this online store item at
+                  <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
+              </div>
+              <div class="ratings">
+                <button class="pull-right" onclick="addToCart()">Add to Cart</button>
+                <p>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"></span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <!--Closed Items-->
+          <!-- Open Items 8  *************** -->
+          <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+              <div onmouseover='changepicIn("008")' onmouseout='changepicOut("008")'>
+                <img id="p008" src="img/product008-1.jpg" alt="NIKE Run Swift">
+              </div>
+              <div class="caption">
+                <h4 class="pull-right">$24.99</h4>
+                <h4>
+                  <a href="#">First Product</a>
+                </h4>
+                <p>See more snippets like this online store item at
+                  <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
+              </div>
+              <div class="ratings">
+                <button class="pull-right" onclick="addToCart()">Add to Cart</button>
+                <p>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"></span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <!--Closed Items-->
+          <!-- Open Items 9  *************** -->
+          <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+              <div onmouseover='changepicIn("009")' onmouseout='changepicOut("009")'>
+                <img id="p009" src="img/product009-1.jpg" alt="NIKE Run Swift">
+              </div>
+              <div class="caption">
+                <h4 class="pull-right">$24.99</h4>
+                <h4>
+                  <a href="#">First Product</a>
+                </h4>
+                <p>See more snippets like this online store item at
+                  <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
+              </div>
+              <div class="ratings">
+                <button class="pull-right" onclick="addToCart()">Add to Cart</button>
+                <p>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"></span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <!--Closed Items-->
+          <!-- Open Items 10  *************** -->
+          <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+              <div onmouseover='changepicIn("010")' onmouseout='changepicOut("010")'>
+                <img id="p010" src="img/product010-1.jpg" alt="NIKE Run Swift">
+              </div>
+              <div class="caption">
+                <h4 class="pull-right">$24.99</h4>
+                <h4>
+                  <a href="#">First Product</a>
+                </h4>
+                <p>See more snippets like this online store item at
+                  <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
+              </div>
+              <div class="ratings">
+                <button class="pull-right" onclick="addToCart()">Add to Cart</button>
+                <p>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"></span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <!--Closed Items-->
+          <!-- Open Items 11  *************** -->
+          <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+              <div onmouseover='changepicIn("011")' onmouseout='changepicOut("011")'>
+                <img id="p011" src="img/product011-1.jpg" alt="NIKE Run Swift">
+              </div>
+              <div class="caption">
+                <h4 class="pull-right">$24.99</h4>
+                <h4>
+                  <a href="#">First Product</a>
+                </h4>
+                <p>See more snippets like this online store item at
+                  <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
+              </div>
+              <div class="ratings">
+                <button class="pull-right" onclick="addToCart()">Add to Cart</button>
+                <p>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"></span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <!--Closed Items-->
+          <!-- Open Items 12  *************** -->
+          <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+              <div onmouseover='changepicIn("012")' onmouseout='changepicOut("012")'>
+                <img id="p012" src="img/product012-1.jpg" alt="NIKE Run Swift">
+              </div>
+              <div class="caption">
+                <h4 class="pull-right">$24.99</h4>
+                <h4>
+                  <a href="#">First Product</a>
+                </h4>
+                <p>See more snippets like this online store item at
+                  <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
+              </div>
+              <div class="ratings">
+                <button class="pull-right" onclick="addToCart()">Add to Cart</button>
+                <p>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"></span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <!--Closed Items-->
 
 
         </div>
@@ -295,7 +524,9 @@
 
   </div>
   <!-- /.container -->
-  <br><br><br>
+  <br>
+  <br>
+  <br>
 
 
   <img src="img/footer.svg">
