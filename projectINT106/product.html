@@ -121,6 +121,14 @@
       numOfOrder = 0;
       document.getElementById("numItems").innerHTML = "(" + numOfOrder + ")";
     }
+
+    function showOnlyTraining(){
+      document.getElementById("i001").style.display='none';
+    }
+
+    function showAll(){
+      document.getElementById("i001").style.display='initial';
+    }
   </script>
 </head>
 
@@ -164,7 +172,7 @@
                 <li><a href="#" onclick="resetOrder()">Reset Order</a></li>
               </ul>
             </li>
-            
+
         </ul>
       </div>
     </div>
@@ -177,11 +185,12 @@
     <div class="row">
 
       <div class="col-md-3">
-        <p class="lead">Shop Name</p>
+        <p class="lead">ประเภทรองเท้า</p>
         <div class="list-group">
-          <a href="#" class="list-group-item">Category 1</a>
-          <a href="#" class="list-group-item">Category 2</a>
-          <a href="#" class="list-group-item">Category 3</a>
+          <a href="#" class="list-group-item" onclick="showOnlyTraining()">รองเท้าเทรนนิ่ง</a>
+          <a href="#" class="list-group-item">รองเท้าวิ่ง</a>
+          <a href="#" class="list-group-item">รองเท้ากีฬา</a>
+          <a href="#" class="list-group-item" onclick="showAll()">ทุกประเภท</a>
         </div>
       </div>
 
@@ -189,27 +198,27 @@
 
         <div class="row">
           <!--   Open Items 1  *************** -->
-          <div class="col-sm-4 col-lg-4 col-md-4">
+          <div id="i001" class="col-sm-4 col-lg-4 col-md-4">
             <div class="thumbnail">
               <div onmouseover='changepicIn("001")' onmouseout='changepicOut("001")'>
                 <img id="p001" src="img/product001-1.jpg" alt="NIKE Run Swift">
               </div>
               <div class="caption">
-                <h4 class="pull-right">$24.99</h4>
-                <h4>
-                  <a href="#">First Product</a>
+                <h4><a href="#">NIKE Run Swift</a>
+                <span class="ratings glyphicon glyphicon-star"></span>
                 </h4>
-                <p>See more snippets like this online store item at
-                  <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
+                <h4>2,000 THB</h4>
+                <p>Upper แบบผ้าตาข่ายช่วยระบายอากาศได้ดี และกระชับเข้ารูปเท้า</p>
               </div>
               <div class="ratings">
                 <button class="pull-right" onclick="addToCart()">Add to Cart</button>
                 <p>
-                  <span class="glyphicon glyphicon-star"></span>
-                  <span class="glyphicon glyphicon-star"></span>
-                  <span class="glyphicon glyphicon-star"></span>
-                  <span class="glyphicon glyphicon-star"></span>
-                  <span class="glyphicon glyphicon-star"></span>
+                    Size: <select name="size">
+                        <option value="40">40</option>
+                        <option value="41">41</option>
+                        <option value="42">42</option>
+                        <option value="43">43</option>
+                      </select>
                 </p>
               </div>
             </div>
