@@ -101,6 +101,10 @@
         }
       });
     });
+
+    function changepic(num){
+      document.getElementById("p"+num).src="img/product"+num+"-2.jpg";
+    }
   </script>
 </head>
 
@@ -165,7 +169,9 @@
 
           <div class="col-sm-4 col-lg-4 col-md-4">
             <div class="thumbnail">
-              <img src="img/nike001.jpg" alt="">
+              <div onmouseover='document.getElementById("p"+num).src="http://placehold.it/320x150";'>
+                  <img id="p001" src="img/product001-1.jpg" alt="">
+              </div>
               <div class="caption">
                 <h4 class="pull-right">$24.99</h4>
                 <h4>
@@ -189,7 +195,7 @@
 
           <div class="col-sm-4 col-lg-4 col-md-4">
             <div class="thumbnail">
-              <img src="http://placehold.it/320x150" alt="">
+              <img src="img/product001-2.jpg" alt="">
               <div class="caption">
                 <h4 class="pull-right">$64.99</h4>
                 <h4>
@@ -198,7 +204,7 @@
                 <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
               </div>
               <div class="ratings">
-                <p class="pull-right">12 reviews</p>
+                <button class="pull-right">Add to Cart</button>
                 <p>
                   <span class="glyphicon glyphicon-star"></span>
                   <span class="glyphicon glyphicon-star"></span>
@@ -207,6 +213,7 @@
                   <span class="glyphicon glyphicon-star-empty"></span>
                 </p>
               </div>
+              
             </div>
           </div>
 
