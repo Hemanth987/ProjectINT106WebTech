@@ -23,6 +23,14 @@
       background-size: auto;
       padding: 10px;
     }
+
+    .text-footer{
+        color: white;
+    }
+
+    .linkFooter a{
+        color: white;
+    }
     
     .carousel-inner img {
       width: 100%; /* Set width to 100% */
@@ -59,6 +67,10 @@
     }
 
     .navbar-brand.scrolled {
+        color: #0044B2;
+    }
+
+    .navbar-brand.scrolled:focus, .navbar-inverse.scrolled .navbar-brand:hover{
         color: #0044B2;
     }
 
@@ -109,9 +121,8 @@
             <li><a href="#">Contact</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Login/Register</a></li>
             <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
-            <li><button class="btn btn-danger navbar-btn" style="margin-left: 10px;margin-right: 10px;">Register</button></li>
         </ul>
         </div>
     </div>
@@ -284,12 +295,12 @@
 
 <img src="img/footer.svg">
 <footer class="container-fluid text-center">
-    <p>Online Store Copyright</p>
-    <form class="form-inline">Get deals:
-      <input type="email" class="form-control" size="50" placeholder="Email Address">
-      <button type="button" class="btn btn-danger">Sign Up</button>
-    </form>
-    <br><br><br>
+<div class="text-footer">
+    <br>
+    <p>&copy; 2018 SR Running Online Store </p>
+    <div class="linkFooter"><a>About</a>  |  <a>Contact</a>   |  <a>Help</a>  |  <a>Privacy Terms of Service</a></div>
+    <br>
+</div>
 </footer>
 
 </body>
