@@ -1,3 +1,6 @@
+body{
+    font-family: 'Prompt', sans-serif;
+}
 .text-footer{
     color: white;
 }
@@ -7,5 +10,13 @@
 }
 
 .registerForm{
-    background-color: yellow;
+    margin: 100px 0px 0px 30px;
+    padding: 10px;
+    background-color: rgb(243, 243, 243);
+    width: 60%;
+
+}
+
+.form-group{
+    padding: 3px;
 }

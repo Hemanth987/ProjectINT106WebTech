@@ -1,143 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>SR Running</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="css/styleSR.css">
+  <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
   <style>
-    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    /* Remove the navbar's default margin-bottom and rounded borders */
+
     .navbar {
       margin-bottom: 0;
       border-radius: 0;
-      background-color:#292929;
+      background-color: #292929;
       border: 0px;
     }
-    
+
     /* Add a gray background color and some padding to the footer */
+
     footer {
-      background-color:rgba(50, 26, 5, 0.88);
+      background-color: rgba(50, 26, 5, 0.88);
       /*background-repeat: no-repeat;*/
       background-size: auto;
       padding: 10px;
     }
-    
+
     .carousel-inner img {
-      width: 100%; /* Set width to 100% */
+      width: 100%;
+      /* Set width to 100% */
       margin: auto;
-      min-height:200px;
+      min-height: 200px;
     }
 
     .navbar-fixed-top.scrolled {
-        background-color: white !important;
-        transition: background-color 500ms linear;
+      background-color: white !important;
+      transition: background-color 500ms linear;
     }
 
-    .navbar-inverse .navbar-brand{
-        color:white;
+    .navbar-inverse .navbar-brand {
+      color: white;
     }
 
-    .navbar-fixed-top.scrolled li a:hover{
-        color: white !important;
-        background-color: #0044B2 !important;
-        transition: background-color 500ms linear;
+    .navbar-fixed-top.scrolled li a:hover {
+      color: white !important;
+      background-color: #0044B2 !important;
+      transition: background-color 500ms linear;
     }
 
-    .navbar-inverse .navbar-nav > li > a {
-        color:white;
+    .navbar-inverse .navbar-nav>li>a {
+      color: white;
     }
 
     .navbar-inverse .navbar-nav>li>a:focus,
-    .navbar-inverse .navbar-nav>li>a:hover{
-        color: rgb(255, 245, 90);
+    .navbar-inverse .navbar-nav>li>a:hover {
+      color: rgb(255, 245, 90);
     }
 
-    .navbar-fixed-top.scrolled li a{
-        color: #0044B2;
+    .navbar-fixed-top.scrolled li a {
+      color: #0044B2;
     }
 
     .navbar-brand.scrolled {
-        color: #0044B2;
+      color: #0044B2;
     }
 
-    .navbar-brand.scrolled:focus, .navbar-inverse.scrolled .navbar-brand:hover{
-        color: #0044B2;
+    .navbar-brand.scrolled:focus,
+    .navbar-inverse.scrolled .navbar-brand:hover {
+      color: #0044B2;
     }
 
-  /* Hide the carousel text when the screen is less than 600 pixels wide */
-  @media (max-width: 600px) {
-    .carousel-caption {
-      display: none; 
+    /* Hide the carousel text when the screen is less than 600 pixels wide */
+
+    @media (max-width: 600px) {
+      .carousel-caption {
+        display: none;
+      }
     }
-  }
   </style>
   <script>
-        $(function () {
-        $(document).scroll(function () {
+    $(function () {
+      $(document).scroll(function () {
         var $nav = $(".navbar-fixed-top");
         $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
-        });
-        });
-        
-        $(function () {
-        $(document).scroll(function () {
+      });
+    });
+
+    $(function () {
+      $(document).scroll(function () {
         var $nav = $(".navbar-brand");
         $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
-        if($(this).scrollTop() > $nav.height()){
-            document.getElementById("logoSR").innerHTML='<img src="img/logo2.svg" width="45px" style="margin-top: -10px; margin-right: -15px;">';
-        }else{
-            document.getElementById("logoSR").innerHTML='<img src="img/logo.svg" width="45px" style="margin-top: -10px; margin-right: -15px;">';
+        if ($(this).scrollTop() > $nav.height()) {
+          document.getElementById("logoSR").innerHTML = '<img src="img/logo2.svg" width="45px" style="margin-top: -10px; margin-right: -15px;">';
+        } else {
+          document.getElementById("logoSR").innerHTML = '<img src="img/logo.svg" width="45px" style="margin-top: -10px; margin-right: -15px;">';
         }
-        });
-        });
+      });
+    });
   </script>
 </head>
+
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top">
+  <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>                        
-            </button>
-            <a id="logoSR" class="navbar-brand" href="index.html"><img src="img/logo.svg" width="45px" style="margin-top: -10px; margin-right: -15px;"></a>
-            <a class="navbar-brand" href="index.html">SR Running</a>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a id="logoSR" class="navbar-brand" href="index.html">
+          <img src="img/logo.svg" width="45px" style="margin-top: -10px; margin-right: -15px;">
+        </a>
+        <a class="navbar-brand" href="index.html">SR Running</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="#">Products</a></li>
-            <li><a href="#">Contact</a></li>
+          <li>
+            <a href="index.html">HOME</a>
+          </li>
+          <li>
+            <a href="product.html">PRODUCT</a>
+          </li>
+          <li>
+            <a href="#">CONTACT</a>
+          </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="register.html"><span class="glyphicon glyphicon-user"></span> Login/Register</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+          <li class="active">
+            <a href="register.html">
+              <span class="glyphicon glyphicon-user"></span> LOGIN/REGISTER</a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="glyphicon glyphicon-shopping-cart"></span> CART</a>
+          </li>
         </ul>
-        </div>
+      </div>
     </div>
-</nav>
-<div class="registerForm">
-  <h2>New Account</h2>
-
-</div>
-
-
-      <br><br><br><br>
-
-
-<img src="img/footer.svg">
-<footer class="container-fluid text-center">
-<div class="text-footer">
+  </nav>
+  <div class="registerForm">
+    <h2>สมัครสมาชิก</h2>
+    <p>เพื่อรับสิทธิประโยชน์และส่วนลด</p>
     <br>
-    <p>&copy; 2018 SR Running Online Store </p>
-    <div class="linkFooter"><a>About</a>  |  <a>Contact</a>   |  <a>Help</a>  |  <a>Privacy Terms of Service</a></div>
+    <form action="/action_page.php" class="form-inline">
+      <fieldset>
+        <legend>ข้อมูลส่วนตัว</legend>
+        <div class="form-group">
+          ชื่อ<sup>*</sup>: 
+          <input type="text" class="form-control" name="firstname" value="" placeholder="ชื่อ" required>
+        </div>
+        <div class="form-group">
+          นามสกุล<sup>*</sup>: 
+          <input type="text" class="form-control" name="lastname" value="" placeholder="นามสกุล" required>
+        </div>
+        <br>
+        <div class="form-group">
+          เพศ<sup>*</sup>: 
+          <input type="radio" name="gender" value="male" checked> ชาย
+          <input type="radio" name="gender" value="female"> หญิง
+        </div>
+        <br>
+        <div class="form-group">
+            วันเกิด: 
+            <input type="date" name="birthday">
+        </div>
+
+
+      </fieldset>
+      <br>
+      <br>
+      <fieldset>
+        <legend>อื่นๆ</legend>
+        <div class="form-group">
+          Password:
+          <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+        </div>
+        </fieldset>
+        <input type="checkbox" value="subscribe" name="subscribe"> ต้องการสมัครรับข่าวสารและข้อเสนอสุดพิเศษจากSR Running
+        <input type="submit">
+      
+    </form>
+
     <br>
-</div>
-</footer>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+  </div>
+
+
+  <br>
+  <br>
+  <br>
+  <br>
+
+
+  <img src="img/footer.svg">
+  <footer class="container-fluid text-center">
+    <div class="text-footer">
+      <br>
+      <p>&copy; 2018 SR Running Online Store </p>
+      <div class="linkFooter">
+        <a>About</a> |
+        <a>CONTACT</a> |
+        <a>Help</a> |
+        <a>Privacy Terms of Service</a>
+      </div>
+      <br>
+    </div>
+  </footer>
 
 </body>
+
 </html>
