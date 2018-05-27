@@ -105,6 +105,16 @@
     function cartOrder(){
       alert("You have "+numOfOrder+" orders");
     }
+
+    function checkpass(){
+      pass1 = document.getElementById("password1").values;
+      pass2 = document.getElementById("password2").values;
+      if(pass1==pass2){
+        document.getElementById("messagePassword").innerHTML="pass";
+      }else{
+        document.getElementById("messagePassword").innerHTML="not pass";
+      }
+    }
   </script>
 </head>
 
@@ -131,7 +141,7 @@
             <a href="product.html">PRODUCT</a>
           </li>
           <li>
-            <a href="#">CONTACT</a>
+            <a href="contact.html">CONTACT</a>
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
@@ -185,11 +195,17 @@
       <fieldset>
         <legend>อื่นๆ</legend>
         <div class="form-group">
-          Password:
-          <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+          Email: <input type="email" class="form-control" id="email" placeholder="Password" name="email" value="" required>
+          <br>Password:
+          <input type="password" class="form-control" id="password1" placeholder="Password" name="password" value="" required>
+          Confirm Password:
+          <input type="password" onblur="checkpass()" class="form-control" id="password2" placeholder="Confirm Password" required>
+          <span id="messagePassword"></span>
         </div>
         </fieldset>
+        <br>
         <input type="checkbox" value="subscribe" name="subscribe"> ต้องการสมัครรับข่าวสารและข้อเสนอสุดพิเศษจากSR Running
+        <br><br>
         <input type="submit">
       
     </form>
