@@ -122,12 +122,57 @@
       document.getElementById("numItems").innerHTML = "(" + numOfOrder + ")";
     }
 
-    function showOnlyTraining(){
-      document.getElementById("i001").style.display='none';
+    /*-------------SHOW OUTPUT IN PRODUCT -----------------*/
+    var runningShoes = document.getElementsByClassName("runningShoes");
+    var sportShoes = document.getElementsByClassName("sportShoes");
+    var lifeStylesShoes = document.getElementsByClassName("lifeStylesShoes");
+
+    function showOnlyRunning(){
+      for(var i=0;i<runningShoes.length;i++){
+        runningShoes[i].style.display='initial';
+      }
+      for(var i=0;i<sportShoes.length;i++){
+        sportShoes[i].style.display='none';
+      }
+      for(var i=0;i<lifeStylesShoes.length;i++){
+        lifeStylesShoes[i].style.display='none';
+      }
+    }
+
+    function showOnlyLifeStyle(){
+      for(var i=0;i<runningShoes.length;i++){
+        runningShoes[i].style.display='none';
+      }
+      for(var i=0;i<sportShoes.length;i++){
+        sportShoes[i].style.display='none';
+      }
+      for(var i=0;i<lifeStylesShoes.length;i++){
+        lifeStylesShoes[i].style.display='initial';
+      }
+    }
+
+    function showOnlySport(){
+      for(var i=0;i<runningShoes.length;i++){
+        runningShoes[i].style.display='none';
+      }
+      for(var i=0;i<sportShoes.length;i++){
+        sportShoes[i].style.display='initial';
+      }
+      for(var i=0;i<lifeStylesShoes.length;i++){
+        lifeStylesShoes[i].style.display='none';
+      }
     }
 
     function showAll(){
-      document.getElementById("i001").style.display='initial';
+      for(var i=0;i<runningShoes.length;i++){
+        runningShoes[i].style.display='initial';
+      }
+      for(var i=0;i<sportShoes.length;i++){
+        sportShoes[i].style.display='initial';
+      }
+      for(var i=0;i<lifeStylesShoes.length;i++){
+        lifeStylesShoes[i].style.display='initial';
+      }
     }
   </script>
 </head>
@@ -186,9 +231,9 @@
       <div class="col-md-3">
         <p class="lead">ประเภทรองเท้า</p>
         <div class="list-group">
-          <a href="#" class="list-group-item" onclick="showOnlyTraining()">รองเท้าเทรนนิ่ง</a>
-          <a href="#" class="list-group-item">รองเท้าวิ่ง</a>
-          <a href="#" class="list-group-item">รองเท้ากีฬา</a>
+          <a href="#" class="list-group-item" onclick="showOnlyLifeStyle()">รองเท้าไลฟ์สไตล์</a>
+          <a href="#" class="list-group-item" onclick="showOnlyRunning()">รองเท้าวิ่ง</a>
+          <a href="#" class="list-group-item" onclick="showOnlySport()">รองเท้ากีฬา</a>
           <a href="#" class="list-group-item" onclick="showAll()">ทุกประเภท</a>
         </div>
       </div>
@@ -197,7 +242,7 @@
 
         <div class="row">
           <!--   Open Items 1  *************** -->
-          <div id="i001" class="col-sm-4 col-lg-4 col-md-4">
+          <div class="col-sm-4 col-lg-4 col-md-4 runningShoes">
             <div class="thumbnail">
               <div onmouseover='changepicIn("001")' onmouseout='changepicOut("001")'>
                 <img id="p001" src="img/product001-1.jpg" alt="NIKE Run Swift">
@@ -213,10 +258,12 @@
                 <button class="pull-right" onclick="addToCart()">Add to Cart</button>
                 <p>
                     Size: <select name="size">
-                        <option value="40">40</option>
-                        <option value="41">41</option>
-                        <option value="42">42</option>
-                        <option value="43">43</option>
+                        <option value="7" disabled>US 7</option>
+                        <option value="8">US 8</option>
+                        <option value="9">US 9</option>
+                        <option value="10">US 10</option>
+                        <option value="11"  disabled>US 11</option>
+                        <option value="12">US 12</option>
                       </select>
                 </p>
               </div>
@@ -224,7 +271,7 @@
           </div>
           <!--Closed Items-->
           <!--   Open Items 2  *************** -->
-          <div class="col-sm-4 col-lg-4 col-md-4">
+          <div class="col-sm-4 col-lg-4 col-md-4 runningShoes">
             <div class="thumbnail">
               <div onmouseover='changepicIn("002")' onmouseout='changepicOut("002")'>
                 <img id="p002" src="img/product002-1.jpg" alt="NIKE Epic React Flyknit">
@@ -240,10 +287,12 @@
                   <button class="pull-right" onclick="addToCart()">Add to Cart</button>
                   <p>
                       Size: <select name="size">
-                          <option value="40">40</option>
-                          <option value="41">41</option>
-                          <option value="42">42</option>
-                          <option value="43">43</option>
+                        <option value="7">US 7</option>
+                        <option value="8">US 8</option>
+                        <option value="9">US 9</option>
+                        <option value="10">US 10</option>
+                        <option value="11">US 11</option>
+                        <option value="12">US 12</option>
                         </select>
                   </p>
               </div>
@@ -252,14 +301,13 @@
           </div>
           <!--Closed Items-->
           <!--  Open Items 3 *************** -->
-          <div class="col-sm-4 col-lg-4 col-md-4">
+          <div class="col-sm-4 col-lg-4 col-md-4 runningShoes">
             <div class="thumbnail">
               <div onmouseover='changepicIn("003")' onmouseout='changepicOut("003")'>
                 <img id="p003" src="img/product003-1.jpg" alt="NIKE Run Swift">
               </div>
               <div class="caption">
                   <h4><a href="#">NIKE Odyssey React</a>
-                  <span class="ratings glyphicon glyphicon-star"></span>
                   </h4>
                   <h4>4,600 THB</h4>
                   <p>ดีดตัวได้ดี โดยโฟมจะตอบสนองต่อแรงกระทบจากแรงก้าวโดยการดีดกลับ</p>
@@ -268,10 +316,12 @@
                   <button class="pull-right" onclick="addToCart()">Add to Cart</button>
                   <p>
                       Size: <select name="size">
-                          <option value="40">40</option>
-                          <option value="41">41</option>
-                          <option value="42">42</option>
-                          <option value="43">43</option>
+                        <option value="7" >US 7</option>
+                        <option value="8">US 8</option>
+                        <option value="9" disabled>US 9</option>
+                        <option value="10" disabled>US 10</option>
+                        <option value="11">US 11</option>
+                        <option value="12">US 12</option>
                         </select>
                   </p>
               </div>
@@ -280,14 +330,13 @@
           <!--Closed Items-->
 
           <!-- Open Items 4  *************** -->
-          <div class="col-sm-4 col-lg-4 col-md-4">
+          <div class="col-sm-4 col-lg-4 col-md-4 runningShoes">
             <div class="thumbnail">
               <div onmouseover='changepicIn("004")' onmouseout='changepicOut("004")'>
                 <img id="p004" src="img/product004-1.jpg" alt="NIKE Run Swift">
               </div>
               <div class="caption">
                   <h4><a href="#">NIKE LunarEpic LF 2</a>
-                  <span class="ratings glyphicon glyphicon-star"></span>
                   </h4>
                   <h4>5,800 THB</h4>
                   <p>มีเทคโนโลยีช่วยเพิ่มความกระชับ พื้นชั้นกลางทำจากโฟม Lunarlon นุ่มสบาย</p>
@@ -296,10 +345,12 @@
                   <button class="pull-right" onclick="addToCart()">Add to Cart</button>
                   <p>
                       Size: <select name="size">
-                          <option value="40">40</option>
-                          <option value="41">41</option>
-                          <option value="42">42</option>
-                          <option value="43">43</option>
+                        <option value="7">US 7</option>
+                        <option value="8">US 8</option>
+                        <option value="9" disabled>US 9</option>
+                        <option value="10">US 10</option>
+                        <option value="11">US 11</option>
+                        <option value="12">US 12</option>
                         </select>
                   </p>
               </div>
@@ -308,7 +359,7 @@
           <!--Closed Items-->
 
           <!-- Open Items 5  *************** -->
-          <div class="col-sm-4 col-lg-4 col-md-4">
+          <div class="col-sm-4 col-lg-4 col-md-4 runningShoes">
             <div class="thumbnail">
               <div onmouseover='changepicIn("005")' onmouseout='changepicOut("005")'>
                 <img id="p005" src="img/product005-1.jpg" alt="NIKE Run Swift">
@@ -324,10 +375,12 @@
                   <button class="pull-right" onclick="addToCart()">Add to Cart</button>
                   <p>
                       Size: <select name="size">
-                          <option value="40">40</option>
-                          <option value="41">41</option>
-                          <option value="42">42</option>
-                          <option value="43">43</option>
+                        <option value="7">US 7</option>
+                        <option value="8" disabled>US 8</option>
+                        <option value="9">US 9</option>
+                        <option value="10" disabled>US 10</option>
+                        <option value="11">US 11</option>
+                        <option value="12">US 12</option>
                         </select>
                   </p>
               </div>
@@ -335,14 +388,13 @@
           </div>
           <!--Closed Items-->
           <!-- Open Items 6  *************** -->
-          <div class="col-sm-4 col-lg-4 col-md-4">
+          <div class="col-sm-4 col-lg-4 col-md-4 runningShoes">
             <div class="thumbnail">
               <div onmouseover='changepicIn("006")' onmouseout='changepicOut("006")'>
                 <img id="p006" src="img/product006-1.jpg" alt="NIKE Run Swift">
               </div>
               <div class="caption">
                   <h4><a href="#">NIKE Air Zoom Structure</a>
-                  <span class="ratings glyphicon glyphicon-star"></span>
                   </h4>
                   <h4>3,680 THB</h4>
                   <p>รองเท้าวิ่งชั้นยอดที่พัฒนาอย่างต่อเนื่อง มาพร้อมน้ำหนักที่เบา สวมใส่สบาย</p>
@@ -351,10 +403,12 @@
                   <button class="pull-right" onclick="addToCart()">Add to Cart</button>
                   <p>
                       Size: <select name="size">
-                          <option value="40">40</option>
-                          <option value="41">41</option>
-                          <option value="42">42</option>
-                          <option value="43">43</option>
+                        <option value="7">US 7</option>
+                        <option value="8">US 8</option>
+                        <option value="9">US 9</option>
+                        <option value="10">US 10</option>
+                        <option value="11">US 11</option>
+                        <option value="12" disabled>US 12</option>
                         </select>
                   </p>
               </div>
@@ -362,14 +416,13 @@
           </div>
           <!--Closed Items-->
           <!-- Open Items 7  *************** -->
-          <div class="col-sm-4 col-lg-4 col-md-4">
+          <div class="col-sm-4 col-lg-4 col-md-4 lifeStylesShoes">
             <div class="thumbnail">
               <div onmouseover='changepicIn("007")' onmouseout='changepicOut("007")'>
                 <img id="p007" src="img/product007-1.jpg" alt="NIKE Run Swift">
               </div>
               <div class="caption">
                   <h4><a href="#">Air Max Motion Low</a>
-                  <span class="ratings glyphicon glyphicon-star"></span>
                   </h4>
                   <h4>1,990 THB</h4>
                   <p>เทคโนโลยี Max Air ช่วยซัพพอร์ททุกย่างก้าว พื้นรองเท้ายึดเกาะได้ดี น้ำหนักเบา</p>
@@ -378,10 +431,12 @@
                   <button class="pull-right" onclick="addToCart()">Add to Cart</button>
                   <p>
                       Size: <select name="size">
-                          <option value="40">40</option>
-                          <option value="41">41</option>
-                          <option value="42">42</option>
-                          <option value="43">43</option>
+                        <option value="7" disabled>US 7</option>
+                        <option value="8">US 8</option>
+                        <option value="9">US 9</option>
+                        <option value="10" disabled>US 10</option>
+                        <option value="11">US 11</option>
+                        <option value="12">US 12</option>
                         </select>
                   </p>
               </div>
@@ -389,7 +444,7 @@
           </div>
           <!--Closed Items-->
           <!-- Open Items 8  *************** -->
-          <div class="col-sm-4 col-lg-4 col-md-4">
+          <div class="col-sm-4 col-lg-4 col-md-4 lifeStylesShoes">
             <div class="thumbnail">
               <div onmouseover='changepicIn("008")' onmouseout='changepicOut("008")'>
                 <img id="p008" src="img/product008-1.jpg" alt="NIKE Run Swift">
@@ -405,10 +460,12 @@
                   <button class="pull-right" onclick="addToCart()">Add to Cart</button>
                   <p>
                       Size: <select name="size">
-                          <option value="40">40</option>
-                          <option value="41">41</option>
-                          <option value="42">42</option>
-                          <option value="43">43</option>
+                        <option value="7">US 7</option>
+                        <option value="8">US 8</option>
+                        <option value="9">US 9</option>
+                        <option value="10">US 10</option>
+                        <option value="11">US 11</option>
+                        <option value="12">US 12</option>
                         </select>
                   </p>
               </div>
@@ -416,7 +473,7 @@
           </div>
           <!--Closed Items-->
           <!-- Open Items 9  *************** -->
-          <div class="col-sm-4 col-lg-4 col-md-4">
+          <div class="col-sm-4 col-lg-4 col-md-4 runningShoes">
             <div class="thumbnail">
               <div onmouseover='changepicIn("009")' onmouseout='changepicOut("009")'>
                 <img id="p009" src="img/product009-1.jpg" alt="NIKE Run Swift">
@@ -432,10 +489,12 @@
                   <button class="pull-right" onclick="addToCart()">Add to Cart</button>
                   <p>
                       Size: <select name="size">
-                          <option value="40">40</option>
-                          <option value="41">41</option>
-                          <option value="42">42</option>
-                          <option value="43">43</option>
+                        <option value="7">US 7</option>
+                        <option value="8" disabled>US 8</option>
+                        <option value="9" disabled>US 9</option>
+                        <option value="10" disabled>US 10</option>
+                        <option value="11" disabled>US 11</option>
+                        <option value="12" disabled>US 12</option>
                         </select>
                   </p>
               </div>
@@ -443,7 +502,7 @@
           </div>
           <!--Closed Items-->
           <!-- Open Items 10  *************** -->
-          <div class="col-sm-4 col-lg-4 col-md-4">
+          <div class="col-sm-4 col-lg-4 col-md-4 sportShoes">
             <div class="thumbnail">
               <div onmouseover='changepicIn("010")' onmouseout='changepicOut("010")'>
                 <img id="p010" src="img/product010-1.jpg" alt="NIKE Run Swift">
@@ -459,10 +518,12 @@
                   <button class="pull-right" onclick="addToCart()">Add to Cart</button>
                   <p>
                       Size: <select name="size">
-                          <option value="40">40</option>
-                          <option value="41">41</option>
-                          <option value="42">42</option>
-                          <option value="43">43</option>
+                        <option value="7">US 7</option>
+                        <option value="8" disabled>US 8</option>
+                        <option value="9">US 9</option>
+                        <option value="10">US 10</option>
+                        <option value="11">US 11</option>
+                        <option value="12">US 12</option>
                         </select>
                   </p>
               </div>
@@ -470,7 +531,7 @@
           </div>
           <!--Closed Items-->
           <!-- Open Items 11  *************** -->
-          <div class="col-sm-4 col-lg-4 col-md-4">
+          <div class="col-sm-4 col-lg-4 col-md-4 sportShoes">
             <div class="thumbnail">
               <div onmouseover='changepicIn("011")' onmouseout='changepicOut("011")'>
                 <img id="p011" src="img/product011-1.jpg" alt="NIKE Run Swift">
@@ -486,10 +547,12 @@
                   <button class="pull-right" onclick="addToCart()">Add to Cart</button>
                   <p>
                       Size: <select name="size">
-                          <option value="40">40</option>
-                          <option value="41">41</option>
-                          <option value="42">42</option>
-                          <option value="43">43</option>
+                        <option value="7">US 7</option>
+                        <option value="8">US 8</option>
+                        <option value="9" disabled>US 9</option>
+                        <option value="10">US 10</option>
+                        <option value="11" disabled>US 11</option>
+                        <option value="12">US 12</option>
                         </select>
                   </p>
               </div>
@@ -497,7 +560,7 @@
           </div>
           <!--Closed Items-->
           <!-- Open Items 12  *************** -->
-          <div class="col-sm-4 col-lg-4 col-md-4">
+          <div class="col-sm-4 col-lg-4 col-md-4 sportShoes">
             <div class="thumbnail">
               <div onmouseover='changepicIn("012")' onmouseout='changepicOut("012")'>
                 <img id="p012" src="img/product012-1.jpg" alt="NIKE Run Swift">
