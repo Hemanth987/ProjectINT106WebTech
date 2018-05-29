@@ -107,11 +107,11 @@
     }
 
     function showPass() {
-      var password = document.getElementById("password");
-      if (password.type === "password") {
-        password.type = "text";
+      var p = document.getElementById("password");
+      if (p.type === "password") {
+        p.type = "text";
       } else {
-        password.type = "password";
+        p.type = "password";
       }
     }
 
@@ -231,9 +231,9 @@
         <br>
         <div class="form-group">
           Password<sup>*</sup> :
-          <input type="password" class="form-control" id="password" onchange="checkpass()" 
+          <input type="password" class="form-control" id="password"
           name="password" value="" placeholder="Password" required>
-          <input type="checkbox" onclick="showPass()" id="showPass"> Show Password
+          <input type="checkbox" onclick="showPass()"> Show Password
         </div>
         <br>
       </fieldset>
