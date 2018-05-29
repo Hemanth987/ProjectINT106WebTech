@@ -102,23 +102,35 @@
     });
 
     var numOfOrder = 0;
-    function cartOrder(){
-      alert("You have "+numOfOrder+" orders");
+    function cartOrder() {
+      alert("You have " + numOfOrder + " orders");
     }
 
-    function checkpass(){
-      pass1 = document.getElementById("password1").values;
-      pass2 = document.getElementById("password2").values;
-      if(pass1==pass2){
-        document.getElementById("messagePassword").innerHTML="pass";
-      }else{
-        document.getElementById("messagePassword").innerHTML="not pass";
+    function showPass() {
+      var password = document.getElementById("password");
+      if (password.type === "password") {
+        password.type = "text";
+      } else {
+        password.type = "password";
       }
     }
+
+    function resetForm(){
+      document.getElementById("firstname").values="";
+      document.getElementById("lastname").values="";
+      document.getElementById("birthday").values="";
+      document.getElementById("phone").values="";
+      document.getElementById("address").values="";
+      document.getElementById("email").values="";
+      document.getElementById("password").values="";
+      document.getElementById("showPass").checked=false;
+      document.getElementById("subscribe").checked=false;
+    }
+
   </script>
 </head>
 
-<body>
+<body style="background-image: url('img/Imagination2.jpg');">
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -150,13 +162,18 @@
               <span class="glyphicon glyphicon-user"></span> LOGIN/REGISTER</a>
           </li>
           <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                  <span class="glyphicon glyphicon-shopping-cart"></span> CART <span id="numItems">(0)</span>
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+              <span class="glyphicon glyphicon-shopping-cart"></span> CART
+              <span id="numItems">(0)</span>
               <ul class="dropdown-menu">
-                <li><a href="#" onclick="cartOrder()">Check Items</a> </li>
-                <li><a href="#" onclick="resetOrder()">Reset Order</a></li>
+                <li>
+                  <a href="#" onclick="cartOrder()">Check Items</a>
+                </li>
+                <li>
+                  <a href="#" onclick="resetOrder()">Reset Order</a>
+                </li>
               </ul>
-            </li>
+          </li>
         </ul>
       </div>
     </div>
@@ -165,62 +182,70 @@
     <h2>สมัครสมาชิก</h2>
     <p>เพื่อรับสิทธิประโยชน์และส่วนลด</p>
     <br>
-    <form action="/action_page.php" class="form-inline">
+    <form class="form-inline">
       <fieldset>
         <legend>ข้อมูลส่วนตัว</legend>
         <div class="form-group">
-          ชื่อ<sup>*</sup>: 
+          ชื่อ
+          <sup> *</sup>:
           <input type="text" class="form-control" name="firstname" value="" placeholder="ชื่อ" required>
         </div>
         <div class="form-group">
-          นามสกุล<sup>*</sup>: 
+          นามสกุล
+          <sup> *</sup>:
           <input type="text" class="form-control" name="lastname" value="" placeholder="นามสกุล" required>
         </div>
         <br>
         <div class="form-group">
-          เพศ<sup>*</sup>: 
+          เพศ
+          <sup> *</sup>:
           <input type="radio" name="gender" value="male" checked> ชาย
           <input type="radio" name="gender" value="female"> หญิง
         </div>
         <br>
         <div class="form-group">
-            วันเกิด: 
-            <input type="date" name="birthday">
+          วันเกิด:
+          <input type="date" name="birthday">
         </div>
-
+        <br>
+        <div class="form-group">
+          เบอร์โทรศัพท์ :
+          <input type="phone" name="phone" value="">
+        </div>
+        <br>
+        <div class="form-group">
+          ที่อยู่ปัจจุบัน :
+          <br>
+          <textarea class="form-control" rows="4" cols="50" name="address"></textarea>
+        </div>
 
       </fieldset>
       <br>
-      <br>
       <fieldset>
-        <legend>อื่นๆ</legend>
+        <legend>Accounts</legend>
         <div class="form-group">
-          Email: <input type="email" class="form-control" id="email" placeholder="Password" name="email" value="" required>
-          <br>Password:
-          <input type="password" class="form-control" id="password1" placeholder="Password" name="password" value="" required>
-          Confirm Password:
-          <input type="password" onblur="checkpass()" class="form-control" id="password2" placeholder="Confirm Password" required>
-          <span id="messagePassword"></span>
+          Email<sup>*</sup> :
+          <input type="email" class="form-control" id="email" placeholder="example@mail.kmutt.ac.th" 
+          name="email" value="" required>
         </div>
-        </fieldset>
         <br>
-        <input type="checkbox" value="subscribe" name="subscribe"> ต้องการสมัครรับข่าวสารและข้อเสนอสุดพิเศษจากSR Running
-        <br><br>
-        <input type="submit">
-      
+        <div class="form-group">
+          Password<sup>*</sup> :
+          <input type="password" class="form-control" id="password" onchange="checkpass()" 
+          name="password" value="" placeholder="Password" required>
+          <input type="checkbox" onclick="showPass()" id="showPass"> Show Password
+        </div>
+        <br>
+      </fieldset>
+      <br><br>
+      <input type="checkbox" value="subscribe" name="subscribe" id="subscribe">
+       ต้องการสมัครรับข่าวสารและข้อเสนอสุดพิเศษจาก SR Running
+      <br><br>
+      <button type="submit" class="btn btn-default">Submit</button>
+      <button type="reset" onclick="resetForm()" class="btn btn-default">Reset</button>
     </form>
 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+    <br><br>
   </div>
 
 
@@ -237,7 +262,7 @@
       <p>&copy; 2018 SR Running Online Store </p>
       <div class="linkFooter">
         <a>About</a> |
-        <a>CONTACT</a> |
+        <a href="contact.html">CONTACT</a> |
         <a>Help</a> |
         <a>Privacy Terms of Service</a>
       </div>
