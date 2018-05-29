@@ -110,16 +110,47 @@
     }
 
     var numOfOrder = 0;
+    var shoes = [];
+    var order;
+    var totalPrice=0;
+
     function cartOrder() {
-      alert("You have " + numOfOrder + " orders");
+      //alert("You have " + numOfOrder + " orders");
+      document.getElementById('cartPopup').style.display = 'block';
+      order = "You have " + numOfOrder + " orders<br>";
+      for(var i=0;i<shoes.length;i++){
+        order+=""+(i+1)+". "+shoes[i].name+"   ("+shoes[i].price+" THB) <br>";
+      }
+      order+="<br>Total "+totalPrice+" THB."
+      document.getElementById('listOfOrder').innerHTML = order;
     }
-    function addToCart() {
+
+    function addToCart(idItems) {
+      var tempname = document.getElementById(idItems+"name").innerHTML;
+      var tempprice = document.getElementById(idItems+"price").innerHTML;
+      totalPrice+=parseInt(tempprice);
+      temporder = {name:tempname,price:tempprice};
+      shoes.push(temporder);
       numOfOrder++;
       document.getElementById("numItems").innerHTML = "(" + numOfOrder + ")";
     }
-    function resetOrder(){
+
+    function resetOrder() {
       numOfOrder = 0;
+      shoes = [];
+      order="";
+      totalPrice=0;
       document.getElementById("numItems").innerHTML = "(" + numOfOrder + ")";
+    }
+
+    /*-------------POP UP -----------------*/
+    var modal = document.getElementById('cartPopup');
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
     }
 
     /*-------------SHOW OUTPUT IN PRODUCT -----------------*/
@@ -127,51 +158,51 @@
     var sportShoes = document.getElementsByClassName("sportShoes");
     var lifeStylesShoes = document.getElementsByClassName("lifeStylesShoes");
 
-    function showOnlyRunning(){
-      for(var i=0;i<runningShoes.length;i++){
-        runningShoes[i].style.display='initial';
+    function showOnlyRunning() {
+      for (var i = 0; i < runningShoes.length; i++) {
+        runningShoes[i].style.display = 'initial';
       }
-      for(var i=0;i<sportShoes.length;i++){
-        sportShoes[i].style.display='none';
+      for (var i = 0; i < sportShoes.length; i++) {
+        sportShoes[i].style.display = 'none';
       }
-      for(var i=0;i<lifeStylesShoes.length;i++){
-        lifeStylesShoes[i].style.display='none';
-      }
-    }
-
-    function showOnlyLifeStyle(){
-      for(var i=0;i<runningShoes.length;i++){
-        runningShoes[i].style.display='none';
-      }
-      for(var i=0;i<sportShoes.length;i++){
-        sportShoes[i].style.display='none';
-      }
-      for(var i=0;i<lifeStylesShoes.length;i++){
-        lifeStylesShoes[i].style.display='initial';
+      for (var i = 0; i < lifeStylesShoes.length; i++) {
+        lifeStylesShoes[i].style.display = 'none';
       }
     }
 
-    function showOnlySport(){
-      for(var i=0;i<runningShoes.length;i++){
-        runningShoes[i].style.display='none';
+    function showOnlyLifeStyle() {
+      for (var i = 0; i < runningShoes.length; i++) {
+        runningShoes[i].style.display = 'none';
       }
-      for(var i=0;i<sportShoes.length;i++){
-        sportShoes[i].style.display='initial';
+      for (var i = 0; i < sportShoes.length; i++) {
+        sportShoes[i].style.display = 'none';
       }
-      for(var i=0;i<lifeStylesShoes.length;i++){
-        lifeStylesShoes[i].style.display='none';
+      for (var i = 0; i < lifeStylesShoes.length; i++) {
+        lifeStylesShoes[i].style.display = 'initial';
       }
     }
 
-    function showAll(){
-      for(var i=0;i<runningShoes.length;i++){
-        runningShoes[i].style.display='initial';
+    function showOnlySport() {
+      for (var i = 0; i < runningShoes.length; i++) {
+        runningShoes[i].style.display = 'none';
       }
-      for(var i=0;i<sportShoes.length;i++){
-        sportShoes[i].style.display='initial';
+      for (var i = 0; i < sportShoes.length; i++) {
+        sportShoes[i].style.display = 'initial';
       }
-      for(var i=0;i<lifeStylesShoes.length;i++){
-        lifeStylesShoes[i].style.display='initial';
+      for (var i = 0; i < lifeStylesShoes.length; i++) {
+        lifeStylesShoes[i].style.display = 'none';
+      }
+    }
+
+    function showAll() {
+      for (var i = 0; i < runningShoes.length; i++) {
+        runningShoes[i].style.display = 'initial';
+      }
+      for (var i = 0; i < sportShoes.length; i++) {
+        sportShoes[i].style.display = 'initial';
+      }
+      for (var i = 0; i < lifeStylesShoes.length; i++) {
+        lifeStylesShoes[i].style.display = 'initial';
       }
     }
   </script>
@@ -210,13 +241,18 @@
           </li>
 
           <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                  <span class="glyphicon glyphicon-shopping-cart"></span> CART <span id="numItems">(0)</span>
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+              <span class="glyphicon glyphicon-shopping-cart"></span> CART
+              <span id="numItems">(0)</span>
               <ul class="dropdown-menu">
-                <li><a href="#" onclick="cartOrder()">Check Items</a> </li>
-                <li><a href="#" onclick="resetOrder()">Reset Order</a></li>
+                <li>
+                  <a href="#" onclick="cartOrder()">Check Items</a>
+                </li>
+                <li>
+                  <a href="#" onclick="resetOrder()">Reset Order</a>
+                </li>
               </ul>
-            </li>
+          </li>
 
         </ul>
       </div>
@@ -248,23 +284,25 @@
                 <img id="p001" src="img/product001-1.jpg" alt="NIKE Run Swift">
               </div>
               <div class="caption">
-                <h4><a href="#">NIKE Run Swift</a>
-                <span class="ratings glyphicon glyphicon-star"></span>
+                <h4>
+                  <a  id="p001name" href="#">NIKE Run Swift</a>
+                  <span class="ratings glyphicon glyphicon-star"></span>
                 </h4>
-                <h4>2,000 THB</h4>
+                <h4><span id="p001price">2000</span> THB</h4>
                 <p>Upper แบบผ้าตาข่ายช่วยระบายอากาศได้ดี และกระชับเข้ารูปเท้า</p>
               </div>
               <div class="ratings">
-                <button class="pull-right" onclick="addToCart()">Add to Cart</button>
+                <button class="pull-right" onclick="addToCart('p001')">Add to Cart</button>
                 <p>
-                    Size: <select name="size">
-                        <option value="7" disabled>US 7</option>
-                        <option value="8">US 8</option>
-                        <option value="9">US 9</option>
-                        <option value="10">US 10</option>
-                        <option value="11"  disabled>US 11</option>
-                        <option value="12">US 12</option>
-                      </select>
+                  Size:
+                  <select name="size">
+                    <option value="7" disabled>US 7</option>
+                    <option value="8">US 8</option>
+                    <option value="9">US 9</option>
+                    <option value="10">US 10</option>
+                    <option value="11" disabled>US 11</option>
+                    <option value="12">US 12</option>
+                  </select>
                 </p>
               </div>
             </div>
@@ -277,24 +315,26 @@
                 <img id="p002" src="img/product002-1.jpg" alt="NIKE Epic React Flyknit">
               </div>
               <div class="caption">
-                  <h4><a href="#">NIKE Epic React Flyknit</a>
+                <h4>
+                  <a id="p002name" href="#">NIKE Epic React Flyknit</a>
                   <span class="ratings glyphicon glyphicon-star"></span>
-                  </h4>
-                  <h4>5,500 THB</h4>
-                  <p>ดีดตัวได้ดี โดยโฟมจะตอบสนองต่อแรงกระทบจากแรงก้าวโดยการดีดกลับ</p>
-                </div>
-                <div class="ratings">
-                  <button class="pull-right" onclick="addToCart()">Add to Cart</button>
-                  <p>
-                      Size: <select name="size">
-                        <option value="7" disabled>US 7</option>
-                        <option value="8" disabled>US 8</option>
-                        <option value="9" disabled>US 9</option>
-                        <option value="10">US 10</option>
-                        <option value="11">US 11</option>
-                        <option value="12">US 12</option>
-                        </select>
-                  </p>
+                </h4>
+                <h4 ><span id="p002price">5500</span> THB</h4>
+                <p>ดีดตัวได้ดี โดยโฟมจะตอบสนองต่อแรงกระทบจากแรงก้าวโดยการดีดกลับ</p>
+              </div>
+              <div class="ratings">
+                <button class="pull-right" onclick="addToCart('p002')">Add to Cart</button>
+                <p>
+                  Size:
+                  <select name="size">
+                    <option value="7" disabled>US 7</option>
+                    <option value="8" disabled>US 8</option>
+                    <option value="9" disabled>US 9</option>
+                    <option value="10">US 10</option>
+                    <option value="11">US 11</option>
+                    <option value="12">US 12</option>
+                  </select>
+                </p>
               </div>
 
             </div>
@@ -304,26 +344,28 @@
           <div class="col-sm-4 col-lg-4 col-md-4 runningShoes">
             <div class="thumbnail">
               <div onmouseover='changepicIn("003")' onmouseout='changepicOut("003")'>
-                <img id="p003" src="img/product003-1.jpg" alt="NIKE Run Swift">
+                <img id="p003" src="img/product003-1.jpg" alt="NIKE Odyssey React">
               </div>
               <div class="caption">
-                  <h4><a href="#">NIKE Odyssey React</a>
-                  </h4>
-                  <h4>4,600 THB</h4>
-                  <p>ดีดตัวได้ดี โดยโฟมจะตอบสนองต่อแรงกระทบจากแรงก้าวโดยการดีดกลับ</p>
-                </div>
-                <div class="ratings">
-                  <button class="pull-right" onclick="addToCart()">Add to Cart</button>
-                  <p>
-                      Size: <select name="size">
-                        <option value="7" >US 7</option>
-                        <option value="8">US 8</option>
-                        <option value="9" disabled>US 9</option>
-                        <option value="10" disabled>US 10</option>
-                        <option value="11">US 11</option>
-                        <option value="12">US 12</option>
-                        </select>
-                  </p>
+                <h4>
+                  <a  id="p003name" href="#">NIKE Odyssey React</a>
+                </h4>
+                <h4><span id="p003price">4600</span> THB</h4>
+                <p>ดีดตัวได้ดี โดยโฟมจะตอบสนองต่อแรงกระทบจากแรงก้าวโดยการดีดกลับ</p>
+              </div>
+              <div class="ratings">
+                <button class="pull-right" onclick="addToCart('p003')">Add to Cart</button>
+                <p>
+                  Size:
+                  <select name="size">
+                    <option value="7">US 7</option>
+                    <option value="8">US 8</option>
+                    <option value="9" disabled>US 9</option>
+                    <option value="10" disabled>US 10</option>
+                    <option value="11">US 11</option>
+                    <option value="12">US 12</option>
+                  </select>
+                </p>
               </div>
             </div>
           </div>
@@ -333,26 +375,28 @@
           <div class="col-sm-4 col-lg-4 col-md-4 runningShoes">
             <div class="thumbnail">
               <div onmouseover='changepicIn("004")' onmouseout='changepicOut("004")'>
-                <img id="p004" src="img/product004-1.jpg" alt="NIKE Run Swift">
+                <img id="p004" src="img/product004-1.jpg" alt="NIKE LunarEpic LF 2">
               </div>
               <div class="caption">
-                  <h4><a href="#">NIKE LunarEpic LF 2</a>
-                  </h4>
-                  <h4>5,800 THB</h4>
-                  <p>มีเทคโนโลยีช่วยเพิ่มความกระชับ พื้นชั้นกลางทำจากโฟม Lunarlon นุ่มสบาย</p>
-                </div>
-                <div class="ratings">
-                  <button class="pull-right" onclick="addToCart()">Add to Cart</button>
-                  <p>
-                      Size: <select name="size">
-                        <option value="7">US 7</option>
-                        <option value="8">US 8</option>
-                        <option value="9" disabled>US 9</option>
-                        <option value="10">US 10</option>
-                        <option value="11">US 11</option>
-                        <option value="12">US 12</option>
-                        </select>
-                  </p>
+                <h4>
+                  <a  id="p004name" href="#">NIKE LunarEpic LF 2</a>
+                </h4>
+                <h4><span id="p004price">5800</span> THB</h4>
+                <p>มีเทคโนโลยีช่วยเพิ่มความกระชับ พื้นชั้นกลางทำจากโฟม Lunarlon นุ่มสบาย</p>
+              </div>
+              <div class="ratings">
+                <button class="pull-right" onclick="addToCart('p004')">Add to Cart</button>
+                <p>
+                  Size:
+                  <select name="size">
+                    <option value="7">US 7</option>
+                    <option value="8">US 8</option>
+                    <option value="9" disabled>US 9</option>
+                    <option value="10">US 10</option>
+                    <option value="11">US 11</option>
+                    <option value="12">US 12</option>
+                  </select>
+                </p>
               </div>
             </div>
           </div>
@@ -362,27 +406,29 @@
           <div class="col-sm-4 col-lg-4 col-md-4 runningShoes">
             <div class="thumbnail">
               <div onmouseover='changepicIn("005")' onmouseout='changepicOut("005")'>
-                <img id="p005" src="img/product005-1.jpg" alt="NIKE Run Swift">
+                <img id="p005" src="img/product005-1.jpg" alt="NIKE Air Max Sequent 3">
               </div>
               <div class="caption">
-                  <h4><a href="#">NIKE Air Max Sequent 3</a>
+                <h4>
+                  <a  id="p005name" href="#">NIKE Air Max Sequent 3</a>
                   <span class="ratings glyphicon glyphicon-star"></span>
-                  </h4>
-                  <h4>3,800 THB</h4>
-                  <p>มี Air Max รูปตัว U ที่ส้นรองเท้าเพื่อรองรับแรงกระแทก น้ำหนักเบาใส่สบาย</p>
-                </div>
-                <div class="ratings">
-                  <button class="pull-right" onclick="addToCart()">Add to Cart</button>
-                  <p>
-                      Size: <select name="size">
-                        <option value="7" disabled>US 7</option>
-                        <option value="8" disabled>US 8</option>
-                        <option value="9">US 9</option>
-                        <option value="10" disabled>US 10</option>
-                        <option value="11">US 11</option>
-                        <option value="12">US 12</option>
-                        </select>
-                  </p>
+                </h4>
+                <h4><span id="p005price">3800</span> THB</h4>
+                <p>มี Air Max รูปตัว U ที่ส้นรองเท้าเพื่อรองรับแรงกระแทก น้ำหนักเบาใส่สบาย</p>
+              </div>
+              <div class="ratings">
+                <button class="pull-right" onclick="addToCart('p005')">Add to Cart</button>
+                <p>
+                  Size:
+                  <select name="size">
+                    <option value="7" disabled>US 7</option>
+                    <option value="8" disabled>US 8</option>
+                    <option value="9">US 9</option>
+                    <option value="10" disabled>US 10</option>
+                    <option value="11">US 11</option>
+                    <option value="12">US 12</option>
+                  </select>
+                </p>
               </div>
             </div>
           </div>
@@ -391,26 +437,28 @@
           <div class="col-sm-4 col-lg-4 col-md-4 runningShoes">
             <div class="thumbnail">
               <div onmouseover='changepicIn("006")' onmouseout='changepicOut("006")'>
-                <img id="p006" src="img/product006-1.jpg" alt="NIKE Run Swift">
+                <img id="p006" src="img/product006-1.jpg" alt="NIKE Air Zoom Structure">
               </div>
               <div class="caption">
-                  <h4><a href="#">NIKE Air Zoom Structure</a>
-                  </h4>
-                  <h4>3,680 THB</h4>
-                  <p>รองเท้าวิ่งชั้นยอดที่พัฒนาอย่างต่อเนื่อง มาพร้อมน้ำหนักที่เบา สวมใส่สบาย</p>
-                </div>
-                <div class="ratings">
-                  <button class="pull-right" onclick="addToCart()">Add to Cart</button>
-                  <p>
-                      Size: <select name="size">
-                        <option value="7" disabled>US 7</option>
-                        <option value="8">US 8</option>
-                        <option value="9">US 9</option>
-                        <option value="10">US 10</option>
-                        <option value="11">US 11</option>
-                        <option value="12" disabled>US 12</option>
-                        </select>
-                  </p>
+                <h4>
+                  <a  id="p006name" href="#">NIKE Air Zoom Structure</a>
+                </h4>
+                <h4><span id="p006price">3680</span> THB</h4>
+                <p>รองเท้าวิ่งชั้นยอดที่พัฒนาอย่างต่อเนื่อง มาพร้อมน้ำหนักที่เบา สวมใส่สบาย</p>
+              </div>
+              <div class="ratings">
+                <button class="pull-right" onclick="addToCart('p006')">Add to Cart</button>
+                <p>
+                  Size:
+                  <select name="size">
+                    <option value="7" disabled>US 7</option>
+                    <option value="8">US 8</option>
+                    <option value="9">US 9</option>
+                    <option value="10">US 10</option>
+                    <option value="11">US 11</option>
+                    <option value="12" disabled>US 12</option>
+                  </select>
+                </p>
               </div>
             </div>
           </div>
@@ -419,26 +467,28 @@
           <div class="col-sm-4 col-lg-4 col-md-4 lifeStylesShoes">
             <div class="thumbnail">
               <div onmouseover='changepicIn("007")' onmouseout='changepicOut("007")'>
-                <img id="p007" src="img/product007-1.jpg" alt="NIKE Run Swift">
+                <img id="p007" src="img/product007-1.jpg" alt="Air Max Motion Low">
               </div>
               <div class="caption">
-                  <h4><a href="#">Air Max Motion Low</a>
-                  </h4>
-                  <h4>1,990 THB</h4>
-                  <p>เทคโนโลยี Max Air ช่วยซัพพอร์ททุกย่างก้าว พื้นรองเท้ายึดเกาะได้ดี น้ำหนักเบา</p>
-                </div>
-                <div class="ratings">
-                  <button class="pull-right" onclick="addToCart()">Add to Cart</button>
-                  <p>
-                      Size: <select name="size">
-                        <option value="7" disabled>US 7</option>
-                        <option value="8">US 8</option>
-                        <option value="9">US 9</option>
-                        <option value="10" disabled>US 10</option>
-                        <option value="11">US 11</option>
-                        <option value="12">US 12</option>
-                        </select>
-                  </p>
+                <h4>
+                  <a id="p007name" href="#">Air Max Motion Low</a>
+                </h4>
+                <h4><span id="p007price">1990</span> THB</h4>
+                <p>เทคโนโลยี Max Air ช่วยซัพพอร์ททุกย่างก้าว พื้นรองเท้ายึดเกาะได้ดี น้ำหนักเบา</p>
+              </div>
+              <div class="ratings">
+                <button class="pull-right" onclick="addToCart('p007')">Add to Cart</button>
+                <p>
+                  Size:
+                  <select name="size">
+                    <option value="7" disabled>US 7</option>
+                    <option value="8">US 8</option>
+                    <option value="9">US 9</option>
+                    <option value="10" disabled>US 10</option>
+                    <option value="11">US 11</option>
+                    <option value="12">US 12</option>
+                  </select>
+                </p>
               </div>
             </div>
           </div>
@@ -447,27 +497,29 @@
           <div class="col-sm-4 col-lg-4 col-md-4 lifeStylesShoes">
             <div class="thumbnail">
               <div onmouseover='changepicIn("008")' onmouseout='changepicOut("008")'>
-                <img id="p008" src="img/product008-1.jpg" alt="NIKE Run Swift">
+                <img id="p008" src="img/product008-1.jpg" alt="NIKE Air Max Motion Racer">
               </div>
               <div class="caption">
-                  <h4><a href="#">NIKE Air Max Motion Racer</a>
+                <h4>
+                  <a id="p008name" href="#">NIKE Air Max Motion Racer</a>
                   <span class="ratings glyphicon glyphicon-star"></span>
-                  </h4>
-                  <h4>3,800 THB</h4>
-                  <p>พื้นรองเท้ามีความยืดหยุ่น เพื่อเพิ่มการเคลื่อนไหวอย่างเป็นธรรมชาติ</p>
-                </div>
-                <div class="ratings">
-                  <button class="pull-right" onclick="addToCart()">Add to Cart</button>
-                  <p>
-                      Size: <select name="size">
-                        <option value="7">US 7</option>
-                        <option value="8">US 8</option>
-                        <option value="9">US 9</option>
-                        <option value="10">US 10</option>
-                        <option value="11">US 11</option>
-                        <option value="12">US 12</option>
-                        </select>
-                  </p>
+                </h4>
+                <h4><span id="p008price">3800</span> THB</h4>
+                <p>พื้นรองเท้ามีความยืดหยุ่น เพื่อเพิ่มการเคลื่อนไหวอย่างเป็นธรรมชาติ</p>
+              </div>
+              <div class="ratings">
+                <button class="pull-right" onclick="addToCart('p008')">Add to Cart</button>
+                <p>
+                  Size:
+                  <select name="size">
+                    <option value="7">US 7</option>
+                    <option value="8">US 8</option>
+                    <option value="9">US 9</option>
+                    <option value="10">US 10</option>
+                    <option value="11">US 11</option>
+                    <option value="12">US 12</option>
+                  </select>
+                </p>
               </div>
             </div>
           </div>
@@ -476,27 +528,29 @@
           <div class="col-sm-4 col-lg-4 col-md-4 runningShoes">
             <div class="thumbnail">
               <div onmouseover='changepicIn("009")' onmouseout='changepicOut("009")'>
-                <img id="p009" src="img/product009-1.jpg" alt="NIKE Run Swift">
+                <img id="p009" src="img/product009-1.jpg" alt="NIKE Air Zoom Winflo 4">
               </div>
               <div class="caption">
-                  <h4><a href="#">NIKE Air Zoom Winflo 4</a>
+                <h4>
+                  <a id="p009name" href="#">NIKE Air Zoom Winflo 4</a>
                   <span class="ratings glyphicon glyphicon-star"></span>
-                  </h4>
-                  <h4>3,500 THB</h4>
-                  <p>เทคโนโลยี Zoom Air รองรับแรงกระแทกได้ดี</p>
-                </div>
-                <div class="ratings">
-                  <button class="pull-right" onclick="addToCart()">Add to Cart</button>
-                  <p>
-                      Size: <select name="size">
-                        <option value="7" disabled>US 7</option>
-                        <option value="8" >US 8</option>
-                        <option value="9" disabled>US 9</option>
-                        <option value="10" disabled>US 10</option>
-                        <option value="11" disabled>US 11</option>
-                        <option value="12" disabled>US 12</option>
-                        </select>
-                  </p>
+                </h4>
+                <h4><span id="p009price">3500</span> THB</h4>
+                <p>เทคโนโลยี Zoom Air รองรับแรงกระแทกได้ดี</p>
+              </div>
+              <div class="ratings">
+                <button class="pull-right" onclick="addToCart('p009')">Add to Cart</button>
+                <p>
+                  Size:
+                  <select name="size">
+                    <option value="7" disabled>US 7</option>
+                    <option value="8">US 8</option>
+                    <option value="9" disabled>US 9</option>
+                    <option value="10" disabled>US 10</option>
+                    <option value="11" disabled>US 11</option>
+                    <option value="12" disabled>US 12</option>
+                  </select>
+                </p>
               </div>
             </div>
           </div>
@@ -505,27 +559,29 @@
           <div class="col-sm-4 col-lg-4 col-md-4 sportShoes">
             <div class="thumbnail">
               <div onmouseover='changepicIn("010")' onmouseout='changepicOut("010")'>
-                <img id="p010" src="img/product010-1.jpg" alt="NIKE Run Swift">
+                <img id="p010" src="img/product010-1.jpg" alt="NIKE Mercurial Vapor 12">
               </div>
               <div class="caption">
-                  <h4><a href="#">NIKE Mercurial Vapor 12</a>
+                <h4>
+                  <a id="p010name" href="#">NIKE Mercurial Vapor 12</a>
                   <span class="ratings glyphicon glyphicon-star"></span>
-                  </h4>
-                  <h4>3,100 THB</h4>
-                  <p>ปุ่มสตั๊ดสำหรับพื้นสนามหลายประเภท (MG) ใช้บนพื้นหญ้าสั้น หรือพื้นสังเคราะห์</p>
-                </div>
-                <div class="ratings">
-                  <button class="pull-right" onclick="addToCart()">Add to Cart</button>
-                  <p>
-                      Size: <select name="size">
-                        <option value="7">US 7</option>
-                        <option value="8" disabled>US 8</option>
-                        <option value="9">US 9</option>
-                        <option value="10">US 10</option>
-                        <option value="11">US 11</option>
-                        <option value="12">US 12</option>
-                        </select>
-                  </p>
+                </h4>
+                <h4><span id="p010price">3100</span> THB</h4>
+                <p>ปุ่มสตั๊ดสำหรับพื้นสนามหลายประเภท (MG) ใช้บนพื้นหญ้าสั้น หรือพื้นสังเคราะห์</p>
+              </div>
+              <div class="ratings">
+                <button class="pull-right" onclick="addToCart('p010')">Add to Cart</button>
+                <p>
+                  Size:
+                  <select name="size">
+                    <option value="7">US 7</option>
+                    <option value="8" disabled>US 8</option>
+                    <option value="9">US 9</option>
+                    <option value="10">US 10</option>
+                    <option value="11">US 11</option>
+                    <option value="12">US 12</option>
+                  </select>
+                </p>
               </div>
             </div>
           </div>
@@ -534,27 +590,29 @@
           <div class="col-sm-4 col-lg-4 col-md-4 sportShoes">
             <div class="thumbnail">
               <div onmouseover='changepicIn("011")' onmouseout='changepicOut("011")'>
-                <img id="p011" src="img/product011-1.jpg" alt="NIKE Run Swift">
+                <img id="p011" src="img/product011-1.jpg" alt="NIKE Hypervenom P3">
               </div>
               <div class="caption">
-                  <h4><a href="#">NIKE Hypervenom P3</a>
+                <h4>
+                  <a id="p011name" href="#">NIKE Hypervenom P3</a>
                   <span class="ratings glyphicon glyphicon-star"></span>
-                  </h4>
-                  <h4>6,100 THB</h4>
-                  <p>สำหรับพื้นสนามทั่วไป ใช้บนสนามพื้นหญ้าสั้น ที่พื้นสนามอาจเปียกแฉะเล็กน้อย</p>
-                </div>
-                <div class="ratings">
-                  <button class="pull-right" onclick="addToCart()">Add to Cart</button>
-                  <p>
-                      Size: <select name="size">
-                        <option value="7">US 7</option>
-                        <option value="8">US 8</option>
-                        <option value="9" disabled>US 9</option>
-                        <option value="10">US 10</option>
-                        <option value="11" disabled>US 11</option>
-                        <option value="12">US 12</option>
-                        </select>
-                  </p>
+                </h4>
+                <h4><span id="p011price">6100</span> THB</h4>
+                <p>สำหรับพื้นสนามทั่วไป ใช้บนสนามพื้นหญ้าสั้น ที่พื้นสนามอาจเปียกแฉะเล็กน้อย</p>
+              </div>
+              <div class="ratings">
+                <button class="pull-right" onclick="addToCart('p011')">Add to Cart</button>
+                <p>
+                  Size:
+                  <select name="size">
+                    <option value="7">US 7</option>
+                    <option value="8">US 8</option>
+                    <option value="9" disabled>US 9</option>
+                    <option value="10">US 10</option>
+                    <option value="11" disabled>US 11</option>
+                    <option value="12">US 12</option>
+                  </select>
+                </p>
               </div>
             </div>
           </div>
@@ -563,27 +621,29 @@
           <div class="col-sm-4 col-lg-4 col-md-4 sportShoes">
             <div class="thumbnail">
               <div onmouseover='changepicIn("012")' onmouseout='changepicOut("012")'>
-                <img id="p012" src="img/product012-1.jpg" alt="NIKE Run Swift">
+                <img id="p012" src="img/product012-1.jpg" alt="NIKE Tiempo Legend 7">
               </div>
               <div class="caption">
-                  <h4><a href="#">NIKE Tiempo Legend 7 </a>
+                <h4>
+                  <a id="p012name" href="#">NIKE Tiempo Legend 7 </a>
                   <span class="ratings glyphicon glyphicon-star"></span>
-                  </h4>
-                  <h4>5,000 THB</h4>
-                  <p>สำหรับพื้นสนามทั่วไป (FG) เพื่อใช้บนพื้นสนามหญ้าสั้นที่เปียกแฉะเล็กน้อย</p>
-                </div>
-                <div class="ratings">
-                  <button class="pull-right" onclick="addToCart()">Add to Cart</button>
-                  <p>
-                      Size: <select name="size">
-                          <option value="7" disabled>US 7</option>
-                        <option value="8" disabled>US 8</option>
-                        <option value="9" disabled>US 9</option>
-                        <option value="10">US 10</option>
-                        <option value="11">US 11</option>
-                        <option value="12">US 12</option>
-                        </select>
-                  </p>
+                </h4>
+                <h4><span id="p012price">5000</span> THB</h4>
+                <p>สำหรับพื้นสนามทั่วไป (FG) เพื่อใช้บนพื้นสนามหญ้าสั้นที่เปียกแฉะเล็กน้อย</p>
+              </div>
+              <div class="ratings">
+                <button class="pull-right" onclick="addToCart('p012')">Add to Cart</button>
+                <p>
+                  Size:
+                  <select name="size">
+                    <option value="7" disabled>US 7</option>
+                    <option value="8" disabled>US 8</option>
+                    <option value="9" disabled>US 9</option>
+                    <option value="10">US 10</option>
+                    <option value="11">US 11</option>
+                    <option value="12">US 12</option>
+                  </select>
+                </p>
               </div>
             </div>
           </div>
@@ -593,8 +653,23 @@
     </div>
   </div>
   <!-- /.container -->
-  <br> <br> <br> <br> <br> <br> <br> <br> <br>
+  <br><br><br><br><br>
+  <br><br><br><br><br>
 
+
+  <div id="cartPopup" class="modal">
+    <form class="modal-content animate" action="/action_page.php">
+      <div class="imgcontainer">
+        <span onclick="document.getElementById('cartPopup').style.display='none'" class="close" title="Close Modal">&times;</span>
+      </div>
+
+      <div class="container">
+        <h2>My Cart</h2>
+        <br>
+        <p id="listOfOrder" style="font-size: 16px;"></p>
+      </div>
+    </form>
+  </div>
 
   <img src="img/footer.svg">
   <footer class="container-fluid text-center">
